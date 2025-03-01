@@ -32,9 +32,12 @@ export async function POST(req,res) {
 
             // Create a new user
             const createUser = new User({
+                name:data.name,
                 mail: data.mail,
                 password: hashPassword,
-                tenantId: tenantId
+                tenantId: tenantId,
+                profileImage:data.profileImage // Save Cloudinary image URL
+
             });
             await createUser.save();
 
@@ -54,7 +57,7 @@ export async function POST(req,res) {
             let mailOptions = {
                 from: process.env.EMAIL, // Sender address
                 to: `${data.mail}`, // Receiver
-                subject: 'Thank You For Registration With Us..!',
+                subject: `Thank You For Registration With Us..! : ${data.name}`,
                 text: `Thannks for Connect with us , below we share the usernam and password . kinldy not share this with other.
                 User name  : ${data.mail}
                 Password : ${data.password}

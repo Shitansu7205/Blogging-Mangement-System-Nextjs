@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        require: true
+    },
     mail: {
         type: String,
         require: true
@@ -9,8 +13,13 @@ const userSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    tenantId:{
+    tenantId: {
         type: String,
+        require: true
+    },
+    profileImage: {
+        type: String,
+        require: true
     }
 })
 

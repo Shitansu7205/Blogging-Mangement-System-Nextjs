@@ -2,23 +2,39 @@
 import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers"; // Import cookies() for Next.js App Router
-
+import connect from '@/dbConfig/dbconfig'
+import User from "@/models/userModels";
 
 export async function GET(request) {
-    try {
-   // ✅ Await cookies() to get the token
-   const cookieStore = await cookies();
-   const token = cookieStore.get("jwttoken")?.value;
 
-   
+    try {
+        await connect()
+        // ✅ Await cookies() to get the token
+        const cookieStore = await cookies();
+        const token = cookieStore.get("jwttoken")?.value;
+
+
         if (!token) {
-            return NextResponse.json({ message: "Unauthorxsxsxssxxsized" }, { status: 401 });
+            return NextResponse.json({ message: "Unauthorized User" }, { status: 401 });
         }
 
         // Verify and decode token
-        const decoded =  jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        return NextResponse.json({ extractedEmailFromToken: decoded.mail }, { status: 200 });
+        const helperMail = decoded.mail
+        console.log(helperMail)
+
+        const user = await User.findOne({mail:helperMail})
+        if (!user) {
+            console.log("❌ User NOT Found in the DB for email:");
+        } 
+        const extractImageUrl  = user.profileImage
+        console.log(extractImageUrl)
+
+
+
+
+        return NextResponse.json({ extractedEmailFromToken: decoded.mail , sendimageurl: extractImageUrl},{ status: 200 });
 
     } catch (error) {
         return NextResponse.json({ message: "Invalid or expired token" }, { status: 401 });
