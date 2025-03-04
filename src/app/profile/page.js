@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 const Profile = () => {
     const [email, setEmail] = useState(""); // State to store user email
+    const [name , setName] = useState('User name')
     const [image, setImage] = useState("https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png")
 
     const router = useRouter()
@@ -19,7 +20,8 @@ const Profile = () => {
             }
 
             const data = await response.json();
-            setEmail(data.extractedEmailFromToken); // Set user email in state
+         
+            setName(data.sendingUsername); // Set user email in state
             setImage(data.sendimageurl)
 
         } catch (err) {
@@ -351,7 +353,7 @@ const Profile = () => {
                                 </div>
                             </div>
                             <div className="p-2 md:block text-left">
-                                <h2 className="text-sm font-semibold text-gray-800">{email}</h2>
+                                <h2 className="text-sm font-semibold text-gray-800">{name}</h2>
                                 <p className="text-xs text-gray-500">Administrator</p>
                             </div>
                         </button>

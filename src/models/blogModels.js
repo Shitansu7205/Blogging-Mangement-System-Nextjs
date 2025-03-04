@@ -5,7 +5,28 @@ const blogSchema = mongoose.Schema({
     title: {
         type: String,
         require: true
+    },
+    contents: {
+        type: String,
+        require: true
+    },
+    category: {
+        type: String,
+        require: true
+    },
+    featureImage: {
+        type: String,
+        require: true
+    },
+    publishedAt: {
+        type: Date,
+        default: Date.now
+    },
+    author:{
+        type :String,
+        require:true
     }
+
 })
 
 // const Blog = new mongoose.model('Blog', blogSchema)

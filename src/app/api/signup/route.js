@@ -37,7 +37,6 @@ export async function POST(req,res) {
                 password: hashPassword,
                 tenantId: tenantId,
                 profileImage:data.profileImage // Save Cloudinary image URL
-
             });
             await createUser.save();
 

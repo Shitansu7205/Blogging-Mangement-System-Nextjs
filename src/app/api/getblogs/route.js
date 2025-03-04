@@ -7,7 +7,7 @@ export async function GET(req, res) {
         console.log("get blogs")
         const fetchedBlogs = await Blog.find();
 
-        
+
 
         return new Response(JSON.stringify({ message: "Fetched blogs successfully", fetchedBlogs }), {
             status: 200,

@@ -29,16 +29,17 @@ export async function POST(req) {
             {
                 id: findUser._id,
                 mail: findUser.mail,
+                username: findUser.name
             },
             process.env.JWT_SECRET,
             {
                 expiresIn: '1h'
             }
         )
-        console.log(token)
+
 
         console.log("Login Successful");
-        return NextResponse.json({ message: "Login Successful", token }, { status: 200 } );
+        return NextResponse.json({ message: "Login Successful", token }, { status: 200 });
 
     } catch (error) {
         console.error("Login error:", error);

@@ -29,12 +29,14 @@ export async function GET(request) {
             console.log("❌ User NOT Found in the DB for email:");
         } 
         const extractImageUrl  = user.profileImage
+        const extractedUsername = user.name
         console.log(extractImageUrl)
+        console.log(extractedUsername)
 
 
 
 
-        return NextResponse.json({ extractedEmailFromToken: decoded.mail , sendimageurl: extractImageUrl},{ status: 200 });
+        return NextResponse.json({ extractedEmailFromToken: decoded.mail , sendimageurl: extractImageUrl , sendingUsername: extractedUsername},{ status: 200 });
 
     } catch (error) {
         return NextResponse.json({ message: "Invalid or expired token" }, { status: 401 });

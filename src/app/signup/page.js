@@ -126,7 +126,7 @@ const Signup = () => {
                                     name="image" 
                                     id="image" 
                                     onChange={(e) => setFile(e.target.files[0])} 
-                                    className="w-full p-2.5 border rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="••••••••" required />
+                                    className="w-full p-2.5 border rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white"  required />
 
                                 </div>
 
