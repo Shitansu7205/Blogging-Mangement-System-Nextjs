@@ -19,5 +19,5 @@ export function middleware(request) {
 
 
 export const config = {
-    matcher: ["/blogs", "/blogpost","/profile"]
+    matcher: ["/blogs", "/blogpost", "/profile"]
 }

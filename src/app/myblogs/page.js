@@ -20,7 +20,7 @@ const Blogs = () => {
 
 
     const fetchedBlogs = async () => {
-        fetch('/api/getblogs', { method: 'GET' })  // ✅ Correct fetch syntax
+        fetch('/api/getmyblogs', { method: 'GET' })  // ✅ Correct fetch syntax
             .then((res) => res.json())            // ✅ Return JSON data
             .then((data) => {
                 setBlogs(data.fetchedBlogs)     // ✅ Store received blogs in state

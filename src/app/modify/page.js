@@ -35,7 +35,7 @@ const ModifyComponent = () => {
 
             if (response.ok) {
                 toast.success("Blog Modified Successfully!");
-                router.push('/blogs'); // ✅ Redirect to blogs page
+                router.push('/myblogs'); // ✅ Redirect to blogs page
             } else {
                 toast.error(data.message || "Unable to modify the blog");
             }
