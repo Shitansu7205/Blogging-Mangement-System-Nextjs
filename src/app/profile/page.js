@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+
 const Profile = () => {
     const [email, setEmail] = useState(""); // State to store user email
     const [name , setName] = useState('User name')
@@ -343,10 +345,12 @@ const Profile = () => {
                         <button type="button" className="dropdown-toggle flex items-center">
                             <div className="flex-shrink-0 w-10 h-10 relative">
                                 <div className="p-1 bg-white rounded-full focus:outline-none focus:ring">
-                                    <img
+                                    <Image
                                         className="w-8 h-8 rounded-full"
                                         src={image}
-                                        alt=""
+                                        width={30}
+                                        height={30}
+                                        alt="Profile image"
                                     />
                                     <div className="top-0 left-7 absolute w-3 h-3 bg-lime-400 border-2 border-white rounded-full animate-ping" />
                                     <div className="top-0 left-7 absolute w-3 h-3 bg-lime-500 border-2 border-white rounded-full" />
@@ -1228,9 +1232,7 @@ const Profile = () => {
 
 
 
-            <h1>Profile Page</h1>
-            <h1>Email is  : {email}</h1>
-            <img src={image} alt="image url" />
+            
         </div>
     );
 };

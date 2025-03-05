@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'; // Ensure this import is present
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Signup = () => {
     const [email, setEmail] = useState('')
@@ -182,9 +183,11 @@ const Signup = () => {
                 {/* Right Side - Image */}
 
                 <div className="flex w-full lg:w-1/2 items-center justify-center p-4">
-                    <img
+                    <Image
                         src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/authentication/illustration.svg"
                         alt="Signup Illustration"
+                        width={500}
+                        height={300}
                         className="w-3/4 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-7xl h-auto object-contain"
                     />
                 </div>

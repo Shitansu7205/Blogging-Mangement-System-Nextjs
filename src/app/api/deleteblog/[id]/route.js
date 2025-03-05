@@ -30,7 +30,7 @@ export async function DELETE(req, { params }) {
             return NextResponse.json({ message: "Invalid or expired token" }, { status: 403 });
         }
 
-        console.log("Logged-in user:", username);
+        // console.log("Logged-in user:", username);
 
         // ✅ Find the blog in the database
         const blog = await Blog.findById(id);
@@ -38,7 +38,7 @@ export async function DELETE(req, { params }) {
             return NextResponse.json({ message: "Blog not found" }, { status: 404 });
         }
 
-        console.log("Blog author:", blog.author);
+        // console.log("Blog author:", blog.author);
 
         // ✅ Authorization Check: Only the author can delete their blog
         if (blog.author !== username) {

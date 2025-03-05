@@ -6,7 +6,7 @@ export async function GET(req) {
 
     try {
         await connect();
-        console.log("Connected to DB ✅");
+        // console.log("Connected to DB ✅");
 
           // Extract the blog ID from query parameters
           const { searchParams } = new URL(req.url);
@@ -17,7 +17,7 @@ export async function GET(req) {
         
 
     
-        console.log(otherBlogs)
+        // console.log(otherBlogs)
 
 
 

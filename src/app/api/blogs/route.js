@@ -9,22 +9,22 @@ export async function POST(req, res) {
 
     try {
         await connect()
-        console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+        // console.log("hiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
         const data = await req.json()
-        console.log(data.Title_data)
-        console.log(data.BlogContents)
-        console.log(data.BlogCategory)
+        // console.log(data.Title_data)
+        // console.log(data.BlogContents)
+        // console.log(data.BlogCategory)
 
         // ✅ Await cookies() to get the token
         const cookieStore = await cookies();
         const token = cookieStore.get("jwttoken")?.value;
 
-        console.log(token)
+        // console.log(token)
 
         // ✅ Decode JWT to get the user
          const decoded = jwt.verify(token, process.env.JWT_SECRET);
          const username = decoded.username; // Assuming your token contains 'username'
-         console.log(username)
+        //  console.log(username)
 
         const newBlog = new Blog({
             title: data.Title_data,

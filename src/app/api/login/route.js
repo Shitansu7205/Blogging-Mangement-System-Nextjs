@@ -8,20 +8,20 @@ export async function POST(req) {
         await connect();
 
         const { mail, password } = await req.json();
-        console.log("Received data:", { mail });
+        // console.log("Received data:", { mail });
 
         // Find user by email
         const findUser = await User.findOne({ mail });
 
         if (!findUser) {
-            console.log("User Not Found");
+            // console.log("User Not Found");
             return NextResponse.json({ message: "User Not Found" }, { status: 404 });
         }
 
         // Verify the password
         const isMatch = await bcrypt.compare(password, findUser.password);
         if (!isMatch) {
-            console.log("Invalid Password");
+            // console.log("Invalid Password");
             return NextResponse.json({ message: "Invalid Credentials" }, { status: 401 });
         }
 
@@ -38,11 +38,11 @@ export async function POST(req) {
         )
 
 
-        console.log("Login Successful");
+        // console.log("Login Successful");
         return NextResponse.json({ message: "Login Successful", token }, { status: 200 });
 
     } catch (error) {
-        console.error("Login error:", error);
+        // console.error("Login error:", error);
         return NextResponse.json({ message: "Server Error" }, { status: 500 });
     }
 }

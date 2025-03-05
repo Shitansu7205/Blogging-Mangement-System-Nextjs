@@ -22,7 +22,7 @@ export async function GET(request) {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
         const helperMail = decoded.mail
-        console.log(helperMail)
+        // console.log(helperMail)
 
         const user = await User.findOne({mail:helperMail})
         if (!user) {
@@ -30,8 +30,8 @@ export async function GET(request) {
         } 
         const extractImageUrl  = user.profileImage
         const extractedUsername = user.name
-        console.log(extractImageUrl)
-        console.log(extractedUsername)
+        // console.log(extractImageUrl)
+        // console.log(extractedUsername)
 
 
 

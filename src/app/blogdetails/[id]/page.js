@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from "next/navigation";
 import { User, Calendar, MessageSquare } from "lucide-react";
 import { toast } from 'react-toastify';
-
+import Image from 'next/image';
 
 const BlogDetails = () => {
     const { id } = useParams(); // Get blog ID from URL
@@ -83,7 +83,7 @@ const BlogDetails = () => {
                 <div className="lg:col-span-2 space-y-10">
                     {/* Blog Image */}
                     <div className="w-full h-[450px] rounded-2xl overflow-hidden shadow-lg border border-gray-200">
-                        <img src={image} alt="Blog Title" className="w-full h-full object-cover" />
+                        <Image src={image} alt="Blog Title" className="w-full h-full object-cover" width={500} height={300} />
                     </div>
 
                     {/* Blog Title & Author Section */}
@@ -130,7 +130,7 @@ const BlogDetails = () => {
                                 otherBlogs.map((blog) => (
                                     <a href={`/blogdetails/${blog._id}`} key={blog._id} className="flex items-center space-x-4 p-1 bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md hover:bg-gray-50 transition">
                                         {/* Blog Image (Left) */}
-                                        <img src={blog.featureImage} alt={blog.title} className="w-12 h-12 rounded-full object-cover border border-gray-300 shadow-sm" />
+                                        <Image width={50} height={50} src={blog.featureImage} alt={blog.title} className="w-12 h-12 rounded-full object-cover border border-gray-300 shadow-sm" />
 
                                         {/* Blog Details (Right) */}
                                         <div>

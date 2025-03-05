@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { toast } from 'react-toastify'
-
+import Image from 'next/image'
 const Resetpassword = () => {
 
     const [mail, setMail] = useState('')
@@ -33,7 +33,7 @@ const Resetpassword = () => {
                 toast.success("Password reset Sucessuful.....")
                 router.push('/login')
             }
-            else{
+            else {
                 toast.error("User Not Found")
                 router.push('/signup')
             }
@@ -123,7 +123,7 @@ const Resetpassword = () => {
                                 </div>
                                 <div>
                                     <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                       Confirm Password
+                                        Confirm Password
                                     </label>
                                     <input type="password"
                                         name="password"
@@ -155,9 +155,11 @@ const Resetpassword = () => {
                 {/* Right Side - Image */}
 
                 <div className="flex w-full lg:w-1/2 items-center justify-center p-4">
-                    <img
+                    <Image
                         src="https://cdni.iconscout.com/illustration/premium/thumb/forget-pin-illustration-download-in-svg-png-gif-file-formats--forgot-security-password-access-lock-pack-crime-illustrations-3805761.png?f=webp"
-                        alt="Signup Illustration"
+                        alt="Reset Password Image"
+                        width={500}
+                        height={500}
                         className="w-3/4 max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-7xl h-auto object-contain"
                     />
                 </div>

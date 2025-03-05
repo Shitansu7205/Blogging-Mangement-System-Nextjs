@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 // import { useRouter } from 'next/router'
 import { Pencil, Trash2, User } from "lucide-react"; // Importing icons
 import { toast } from 'react-toastify';
-
+import Image from 'next/image';
 
 const Blogs = () => {
 
@@ -99,7 +99,7 @@ const Blogs = () => {
                         <div key={fetchedBlogs._id} className="bg-white shadow-lg rounded-lg overflow-hidden transition-all transform hover:scale-105 hover:shadow-xl">
                             {/* Feature Image */}
                             <div className="relative w-full h-48">
-                                <img src={fetchedBlogs.featureImage} alt={fetchedBlogs.title} className="w-full h-full object-cover" />
+                                <Image src={fetchedBlogs.featureImage} alt={fetchedBlogs.title} className="w-full h-full object-cover" width={300} height={200} />
                             </div>
 
                             {/* Blog Content */}

@@ -11,7 +11,7 @@ export async function POST(req,res) {
 
         // Parse the incoming JSON data
         const data = await req.json();
-        console.log("Received data:", data);
+        // console.log("Received data:", data);
 
         // Check if a user with the same email already exists
         const findUser = await User.findOne({ mail: data.mail });
@@ -21,7 +21,7 @@ export async function POST(req,res) {
 
 
         if (findUser) {
-            console.log("user Exits....")
+            // console.log("user Exits....")
             return NextResponse.json({ message: "User Already Exists" }, { status: 400 });
         } else {
 
@@ -65,14 +65,14 @@ export async function POST(req,res) {
             try {
                 // Send email
                 let info = await transporter.sendMail(mailOptions);
-                console.log("Message sent: %s", info.messageId);
+                // console.log("Message sent: %s", info.messageId);
         
                 return NextResponse.json(
                     { message: "Email sent successfully", messageId: info.messageId },
                     { status: 200 }
                 );
             } catch (error) {
-                console.error("Error sending email: ", error);
+                // console.error("Error sending email: ", error);
         
                 return NextResponse.json(
                     { message: "Error sending email", error: error.message },
