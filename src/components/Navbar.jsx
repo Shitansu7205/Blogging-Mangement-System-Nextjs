@@ -2,23 +2,24 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Bell, ChevronDown, Menu, X, BookOpen } from 'lucide-react';
+import { Bell, ChevronDown, Menu, X, BookOpen, User } from 'lucide-react';
 import Image from 'next/image';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import Hero from './Hero';
 export default function Navbar() {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const [dropdownOpenmob, setDropdownOpenmob] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     // const user = { name: 'John Doe', image: 'https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png' }; // Dummy user data
     const [name, setName] = useState('')
-    const [image, setImage] = useState('https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes-thumbnail.png')
+    const [image, setImage] = useState(null)
 
     const router = useRouter()
 
 
 
-    const fetchCurrentUser = async () => {
+    const fetchCurrentUserForNavbar = async () => {
         try {
             const response = await fetch("/api/currentuser", {
                 method: "GET",
@@ -33,13 +34,6 @@ export default function Navbar() {
 
             setName(data.sendingUsername); // Set user email in state
             setImage(data.sendimageurl)
-            // setEmail(data.extractedEmailFromToken)
-
-
-
-            fetchedBlogsLenght()
-            fetchedMyBlogsLength()
-
         } catch (err) {
             // toast.error("Permission Denied..")
 
@@ -50,19 +44,31 @@ export default function Navbar() {
 
 
     useEffect(() => {
-        fetchCurrentUser();
-    }, []);
+        if (!name) { // If user name isn't already set, fetch it from the backend
+            fetchCurrentUserForNavbar();
+        }
+    }, [name]);  // Dependency on name, so it fetches only if the name is not set
+    
 
 
     const logOut = async () => {
-        const responce = await fetch('/api/logout', {
+        const response = await fetch('/api/logout', {
             method: 'GET'
-        })
-        if (responce.ok) {
-            toast.success('Logout Sucessfully...')
-            router.push('/login')
+        });
+    
+        if (response.ok) {
+            toast.success('Logged Out Successfully');
+            
+            // Refresh the page
+            window.location.reload(); // This will reload the page
+            
+            // Redirect to the login page after a small delay
+            setTimeout(() => {
+                router.push('/login');
+            }, 100); // Delay redirection to ensure reload happens first
         }
-    }
+    };
+    
 
 
 
@@ -75,6 +81,7 @@ export default function Navbar() {
 
 
     return (
+        <>
         <nav className="flex items-center justify-between px-9 lg:px-32 py-4 bg-blue-700  shadow-lg w-full text-white  sticky top-0 z-20">
             {/* Left - Logo */}
             <div className="text-2xl font-bold flex items-center gap-2">
@@ -90,26 +97,11 @@ export default function Navbar() {
             {/* Center - Nav Menu (Desktop) */}
             <ul className="md:flex hidden gap-6 text-lg font-medium">
                 <li><Link href="/">Home</Link></li>
-                <li><Link href="/about">About</Link></li>
-                <li><Link href="/services">Services</Link></li>
+                <li><Link href="/blogs">Blogs</Link></li>
+                {/* <li><Link href="/myblogs">My Blogs</Link></li> */}
+                <li><Link href="/blogpost">Add Blogs</Link></li>
 
-                {/* Blogs Dropdown */}
-                <li className="relative group">
-                    <button className="flex items-center gap-1 hover:text-gray-300">
-                        Blogs <span className="text-sm">▼</span>
-                    </button>
-                    <ul className="absolute hidden group-hover:flex flex-col bg-white text-gray-800 shadow-md rounded-lg w-40 py-2 top-12">
-                        <li>
-                            <Link href="/blogs" className="block px-4 py-2 hover:bg-gray-200 text-sm">All Blogs</Link>
-                        </li>
-                        <li>
-                            <Link href="/blogs/myblogs" className="block px-4 py-2 hover:bg-gray-200 text-sm">My Blogs</Link>
-                        </li>
-                        <li>
-                            <Link href="/blogs/add" className="block px-4 py-2 hover:bg-gray-200 text-sm">Add New Blog</Link>
-                        </li>
-                    </ul>
-                </li>
+ 
                 <li><Link href="/contact">Contact</Link></li>
 
             </ul>
@@ -119,33 +111,11 @@ export default function Navbar() {
             {menuOpen && (
                 <div className="absolute top-16 left-0 w-full bg-white text-gray-800 shadow-md md:hidden flex flex-col items-center py-4 gap-2">
                     <Link href="/" className="block px-4 py-2 hover:bg-gray-200 w-full text-center">Home</Link>
-                    <Link href="/about" className="block px-4 py-2 hover:bg-gray-200 w-full text-center">About</Link>
                     <Link href="/services" className="block px-4 py-2 hover:bg-gray-200 w-full text-center">Services</Link>
                     <Link href="/contact" className="block px-4 py-2 hover:bg-gray-200 w-full text-center">Contact</Link>
 
                     {/* Blogs Dropdown for Mobile */}
-                    <div className="w-full text-center">
-                        <button
-                            className="block w-full px-4 py-2 hover:bg-gray-200 text-gray-800"
-                            onClick={() => setDropdownOpenmob(!dropdownOpenmob)}
-                        >
-                            Blogs <span className="text-sm">{dropdownOpenmob ? "▲" : "▼"}</span>
-                        </button>
-
-                        {dropdownOpenmob && (
-                            <ul className="w-full bg-gray-100 text-gray-800 shadow-md flex flex-col py-2">
-                                <li>
-                                    <Link href="/blogs" className="block px-4 py-2 hover:bg-gray-300 text-sm">All Blogs</Link>
-                                </li>
-                                <li>
-                                    <Link href="/myblogs" className="block px-4 py-2 hover:bg-gray-300 text-sm">My Blogs</Link>
-                                </li>
-                                <li>
-                                    <Link href="/blogpost" className="block px-4 py-2 hover:bg-gray-300 text-sm">Add New Blog</Link>
-                                </li>
-                            </ul>
-                        )}
-                    </div>
+         
                 </div>
             )}
 
@@ -157,7 +127,16 @@ export default function Navbar() {
 
                 {/* Profile Image */}
                 <div className="relative flex items-center gap-2 cursor-pointer" onClick={() => setDropdownOpen(!dropdownOpen)}>
-                    <Image src={image} alt="Profile" width={40} height={40} className="rounded-full border-2 border-white hover:scale-105 transition" />
+                    {/* <Image src={image} alt="Profile" width={40} height={40} className="rounded-full border-2 border-white hover:scale-105 transition" /> */}
+                    {image ? (
+                        <img
+                            src={image}
+                            alt="User Avatar"
+                            className="w-10 h-10 rounded-full"
+                        />
+                    ) : (
+                        <User className="w-7 h-7 text-white" />
+                    )}
                     <span className="hidden md:block font-medium">{name}</span>
                     <ChevronDown className="w-5 h-5" />
                 </div>
@@ -172,5 +151,7 @@ export default function Navbar() {
                 )}
             </div>
         </nav>
+        
+        </>
     );
 }

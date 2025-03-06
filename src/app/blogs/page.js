@@ -72,33 +72,7 @@ const Blogs = () => {
 
     return (
         <>
-            {/* <h1>All Blogs</h1>
-            {
-                blogs.map((fetchedBlogs) => (
-                    // <div key={fetchedBlogs._id}>{fetchedBlogs.title}</div>  // ✅ Add a unique key
-                    <div
-                        key={fetchedBlogs._id}
-                        className="flex items-center p-3 bg-white shadow-md rounded-lg"
-                    >
-                        <button
-                            // onClick={() => modifyBlog(fetchedBlogs._id, fetchedBlogs.title)}
-                            onClick={() => router.push(`/modify?id=${fetchedBlogs._id}&title=${fetchedBlogs.title}`)}
-                            className="mr-3 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow hover:bg-blue-600 transition"
-                        >
-                            Modify
-                        </button>
-                        <button
-                            // onClick={deleteOne(fetchedBlogs._id)}
-                            onClick={() => deleteOne(fetchedBlogs._id)}
-                            className="mr-3 px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow hover:bg-blue-600 transition"
-                        >
-                            Delete
-                        </button>
-                        <span className="text-lg font-medium text-gray-800">{fetchedBlogs.title}</span><br></br>
-                        <span className="text-lg font-medium text-gray-800" dangerouslySetInnerHTML={{ __html: fetchedBlogs.contents }} ></span>
-                    </div>
-                ))
-            } */}
+            
 
             {loading ? (
                 
@@ -108,7 +82,7 @@ const Blogs = () => {
             ) : (
 
 
-                <div className="container mx-auto lg:px-24 ">
+                <div className="container mx-auto lg:px-24 lg:py-10 py-5">
                     <h1 className="text-3xl font-bold text-center mb-6 text-gray-900">All Blogs</h1>
 
                     {/* Blog Grid */}

@@ -82,36 +82,9 @@ const Blogpost = () => {
     };
 
     return (
-        // <form className="max-w-6xl mx-auto" onSubmit={sendData}>
-        //     <div className="mb-5">
-        //         <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-        //             Title
-        //         </label>
-        //         <input
-        //             type="text"
-        //             value={title}
-        //             onChange={(e) => setTitle(e.target.value)}
-        //             id="title"
-        //             className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        //             placeholder="Enter blog title"
-        //             required
-        //         />
-        //     </div>
-
-        //     <TiptapEditor value={content} onChange={setContent} />
-
-
-        //     <div>
-        //         <button
-        //             type="submit"
-        //             className="block w-full p-2 text-white bg-blue-600 border border-blue-600 rounded-lg text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-blue-500 dark:border-blue-500 dark:focus:ring-blue-400 dark:focus:border-blue-400"
-        //         >
-        //             Submit
-        //         </button>
-        //     </div>
-        // </form>
+        
         <>
-            <form className="max-w-8xl mx-auto lg:px-16 bg-gray-100" onSubmit={sendData}>
+            <form className="max-w-8xl mx-auto lg:px-16 bg-gray-100 lg:py-10" onSubmit={sendData}>
                 <div className="flex flex-col lg:flex-row gap-6">
 
                     {/* Left Section: Blog Editor */}
