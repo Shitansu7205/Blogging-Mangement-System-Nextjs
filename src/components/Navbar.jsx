@@ -102,7 +102,7 @@ export default function Navbar() {
                 <li><Link href="/blogpost">Add Blogs</Link></li>
 
  
-                <li><Link href="/contact">Contact</Link></li>
+                <li><Link href="/#contact">Contact</Link></li>
 
             </ul>
 
