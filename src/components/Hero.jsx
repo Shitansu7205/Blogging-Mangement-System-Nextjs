@@ -8,10 +8,11 @@ const Hero = () => {
   const [mail, setMail] = useState('')
   const [phone, setPhone] = useState('')
   const [message, setMessage] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const sendData = async (e) => {
     e.preventDefault();
-  
+    setLoading(true); // Start the loader
     try {
       // Perform the fetch request
       const response = await fetch('/api/contactus', {
@@ -23,7 +24,7 @@ const Hero = () => {
           name, mail, phone, message
         }), // send the form data as JSON in the body
       });
-  
+
       // Check if the response is successful
       if (response.ok) {
         const data = await response.json();
@@ -38,8 +39,11 @@ const Hero = () => {
       toast.error('Unable to submit the data');
       console.error('Error:', error);
     }
+    finally {
+      setLoading(false); // Stop the loader once the response is received or error is caught
+    }
   };
-  
+
   return (
     <>
 
@@ -130,10 +134,21 @@ const Hero = () => {
                   </div>
                 </div>
               </div>
-              <button
-                className="sm:w-fit w-full px-3.5 py-2 bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 ease-in-out rounded-lg shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] justify-center items-center flex">
-                <span className="px-1.5 text-white text-sm font-medium leading-6">Read More</span>
-              </button>
+              <div className='flex justify-start w-full'>
+              <Link href='/blogs'>
+                <button
+                  className="sm:w-fit w-full px-3.5 py-2 bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 ease-in-out rounded-lg shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] justify-center items-center flex">
+                  <span className="px-1.5 text-white text-sm font-medium leading-6">Read Blogs</span>
+                </button>
+              </Link>
+              <Link href='/blogpost' className='ml-3'>
+                <button
+                  className="sm:w-fit w-full px-3.5 py-2 bg-indigo-600 hover:bg-indigo-800 transition-all duration-700 ease-in-out rounded-lg shadow-[0px_1px_2px_0px_rgba(16,_24,_40,_0.05)] justify-center items-center flex">
+                  <span className="px-1.5 text-white text-sm font-medium leading-6">Post your Blogs</span>
+                </button>
+              </Link>
+              </div>
+ 
             </div>
           </div>
         </div>
@@ -253,8 +268,34 @@ const Hero = () => {
                   className="w-full h-12 text-gray-600 placeholder-gray-400 bg-transparent text-lg shadow-sm font-normal leading-7 rounded-full border border-gray-200 focus:outline-none pl-4 mb-6"
                   placeholder="Message"
                 />
-                <button className="w-full h-12 text-white text-base font-semibold leading-6 rounded-full transition-all duration-700 hover:bg-indigo-800 bg-indigo-600 shadow-sm">
-                  Submit Info
+                {/* Show Loader or Submit Button */}
+                <button
+                  className={`w-full h-12 text-white text-base font-semibold leading-6 rounded-full transition-all duration-700 ${loading ? 'bg-indigo-400 cursor-wait' : 'bg-indigo-600 hover:bg-indigo-800'} shadow-sm`}
+                  disabled={loading} // Disable button while loading
+                >
+                  {loading ? (
+                    <div className="flex justify-center items-center">
+                      <svg
+                        className="animate-spin h-5 w-5 mr-3"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="white"
+                      >
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M4 12a8 8 0 0116 0"
+                        />
+                      </svg>
+                      Sending...
+                    </div>
+                  ) : (
+                    'Submit Info'
+                  )}
                 </button>
               </form>
             </div>

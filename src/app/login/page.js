@@ -6,15 +6,16 @@ import { toast } from 'react-toastify';
 import Link from 'next/link';
 import Image from 'next/image';
 
+
 const Signup = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
+    const [loading, setLoading] = useState(false)
     const router = useRouter()
 
     const sendData = async (e) => {
         e.preventDefault()
-
+        setLoading(true)
         try {
             const response = await fetch('/api/login', {
                 method: 'POST',
@@ -44,33 +45,16 @@ const Signup = () => {
 
         } catch (error) {
             console.log("Login  Failed")
+        } finally {
+            setLoading(false)
         }
 
     }
 
     return (
         <>
-            {/* <form className='bg-blue-700 flex flex-col items-center justify-center p-6 rounded-lg w-80 mx-auto mt-10 shadow-lg' onSubmit={sendData}>
-                <input
-                    type='email'
-                    placeholder='Enter Email'
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                    className='w-full p-2 mb-4 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500'
-                />
-                <input
-                    type='password'
-                    placeholder='Enter Password'
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                    className='w-full p-2 mb-4 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500'
-                />
-                <input
-                    type='submit'
-                    value="Create Account"
-                    className='bg-white text-blue-700 font-semibold px-4 py-2 rounded-md cursor-pointer hover:bg-gray-200 transition'
-                />
-            </form> */}
+
+
 
 
             <section className="bg-gray-50 dark:bg-gray-900 min-h-screen flex flex-col-reverse lg:flex-row" >
@@ -86,6 +70,7 @@ const Signup = () => {
                                     <a
                                         href="#"
                                         className="flex items-center justify-center space-x-3 px-3 py-2 border rounded-md text-sm font-medium transition hover:bg-gray-100"
+                                        onClick={() => toast.warn("Login via email & password..!")}
                                     >
                                         <svg
                                             className="w-5 h-5"
@@ -117,6 +102,7 @@ const Signup = () => {
 
                                     <a
                                         href="#"
+                                        onClick={() => toast.warn("Login via email & password..!")}
                                         className="flex items-center justify-center space-x-3 px-3 py-2 border rounded-md text-sm font-medium transition hover:bg-gray-100"
                                     >
                                         <svg
@@ -159,9 +145,38 @@ const Signup = () => {
                                         className="w-full p-2.5 border rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="••••••••" required />
                                 </div>
 
-                                <button type="submit" className="w-full bg-blue-600 hover:bg-primary-700 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                    Log In
+
+
+                                <button
+                                    disabled={loading} // Disable button while loading
+                                    type="submit"
+                                    className="w-full bg-blue-600 hover:bg-primary-700 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                    {loading ? (
+                                        <div className="flex justify-center items-center">
+                                            <svg
+                                                className="animate-spin h-5 w-5 mr-3"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="white"
+                                            >
+                                                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                                <path
+                                                    stroke="currentColor"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="2"
+                                                    d="M4 12a8 8 0 0116 0"
+                                                />
+                                            </svg>
+                                            Sending...
+                                        </div>
+                                    ) : (
+                                        'Login'
+                                    )}
                                 </button>
+
+
                                 <div className='flex flex-row justify-between items-center'>
                                     <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                         Dont Have Any Account ? {"  "}
@@ -184,7 +199,8 @@ const Signup = () => {
 
                 <div className="flex w-full lg:w-1/2 items-center justify-center p-4">
                     <Image
-                        src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/authentication/illustration.svg"
+                        // src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/authentication/illustration.svg"
+                        src="/images/login.svg"
                         alt="Signup Illustration"
                         width={500}
                         height={300}

@@ -11,6 +11,7 @@ const ModifyComponent = () => {
     const getTitle = searchParams.get('title');
 
     const [modifiedTitle, setModifiedTitle] = useState(getTitle || ""); // Handle null title
+  
 
     const sendData = async (e) => {
         e.preventDefault();

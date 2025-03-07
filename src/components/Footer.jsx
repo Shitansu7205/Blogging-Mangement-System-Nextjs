@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'; // Example social icons
+import { FaFacebook, FaTwitter, FaGlobe , FaLinkedin ,FaGithub } from 'react-icons/fa'; // Example social icons
 
 const Footer = () => {
     return (
@@ -14,9 +14,12 @@ const Footer = () => {
                     </p>
                     <div className="flex mt-4 space-x-4">
                         <a href="#" className="hover:text-blue-400"><FaFacebook size={20} /></a>
-                        <a href="#" className="hover:text-blue-400"><FaTwitter size={20} /></a>
-                        <a href="#" className="hover:text-pink-600"><FaInstagram size={20} /></a>
-                        <a href="#" className="hover:text-blue-600"><FaLinkedin size={20} /></a>
+                          {/* Behance Icon */}
+                          <a href="https://shitansu-portfolio.netlify.app/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-500 transition-all duration-300">
+                        <FaGlobe size={20} />
+                        </a>
+                        <a href="https://github.com/Shitansu7205?tab=repositories" className="hover:text-blue-400"><FaGithub size={20} /></a>
+                        <a href="https://www.linkedin.com/in/shitansu-kumar-gochhayat-91b7a5241/" className="hover:text-blue-600"><FaLinkedin size={20} /></a>
                     </div>
                 </div>
 
@@ -25,9 +28,9 @@ const Footer = () => {
                     <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
                     <ul className="text-sm flex flex-col ">
                         <li><Link href="/">Home</Link></li>
-                        <li><Link href="/about">About</Link></li>
+                        <li><Link href="/#about">About</Link></li>
                         <li><Link href="/blogs">Blogs</Link></li>
-                        <li><Link href="/contact">Contact</Link></li>
+                        <li><Link href="/#contact">Contact</Link></li>
                     </ul>
                 </div>
 
@@ -59,7 +62,7 @@ const Footer = () => {
 
             {/* Bottom Copyright Section */}
             <div className="mt-8 border-t border-gray-700 pt-4 text-center text-sm">
-                &copy; {new Date().getFullYear()} <span className='text-red-500 font-bold'>Shitansu</span> || All rights reserved.
+                &copy; {new Date().getFullYear()} <a href='https://www.linkedin.com/in/shitansu-kumar-gochhayat-91b7a5241/'><span className='text-green-400 font-bold tracking-wide'>Shitansu</span> </a>|| All rights reserved.
             </div>
         </footer>
     );

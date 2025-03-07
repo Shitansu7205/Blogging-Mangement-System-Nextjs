@@ -9,13 +9,13 @@ const Signup = () => {
     const [password, setPassword] = useState('')
     const [file, setFile] = useState(null);
     const [name,setName] = useState('')
-
+    const [loading,setLoading]  = useState(false)
 
     const router = useRouter()
 
     const sendData = async (e) => {
         e.preventDefault();
-    
+        setLoading(true)
         try {
             // Upload the image if one is selected
             let imageUrl = "";
@@ -70,6 +70,8 @@ const Signup = () => {
         } catch (error) {
             console.log("Creation Failed", error);
             toast.error("Creation Failed, please try again.");
+        }finally{
+            setLoading(false)
         }
     };
     
@@ -143,8 +145,32 @@ const Signup = () => {
                                         </label>
                                     </div>
                                 </div>
-                                <button type="submit" className="w-full bg-blue-600 hover:bg-primary-700 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                    Create an account
+                                <button 
+                                disabled={loading}
+                                type="submit" className="w-full bg-blue-600 hover:bg-primary-700 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                   {loading ? (
+                                        <div className="flex justify-center items-center">
+                                            <svg
+                                                className="animate-spin h-5 w-5 mr-3"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="white"
+                                            >
+                                                <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                                <path
+                                                    stroke="currentColor"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeWidth="2"
+                                                    d="M4 12a8 8 0 0116 0"
+                                                />
+                                            </svg>
+                                            Creating your Account...
+                                        </div>
+                                    ) : (
+                                        'Create Now'
+                                    )}
                                 </button>
                                 <div className='flex flex-row justify-between items-center'>
                                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
@@ -168,7 +194,8 @@ const Signup = () => {
                
                 <div className="flex w-full lg:w-1/2 items-center justify-center p-4">
                     <Image
-                        src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/authentication/illustration.svg"
+                        // src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/authentication/illustration.svg"
+                        src='/images/login.svg'
                         alt="Signup Illustration"
                         width={500}
                         height={300}
