@@ -35,8 +35,17 @@ const Signup = () => {
             if (response.status === 200) {
 
                 toast.success("Login Sucessufully....")
+
                 Cookies.set("jwttoken", gettingToken, { expires: 1, secure: false });      //set the cookie and store in to the Browser
+                // Refresh the page
+
+
+
                 router.push('/profile')
+                setTimeout(() => {
+                    window.location.reload(); // This will reload the page
+                }, 1000);
+
             } else {
                 toast.error(`Login Failed: ${data.message || "Unknown Error"}`);
                 router.push('/resetpassword')

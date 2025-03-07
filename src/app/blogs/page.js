@@ -5,10 +5,8 @@ import { useRouter } from 'next/navigation'
 import { Pencil, Trash2, User } from "lucide-react"; // Importing icons
 import { toast } from 'react-toastify';
 import Image from 'next/image';
-import { PuffLoader } from "react-spinners"; // Import a beautiful loader
-import { ClipLoader  } from "react-spinners";
+
 import { PropagateLoader } from "react-spinners";
-import { MoonLoader } from "react-spinners";
 
 
 const Blogs = () => {
@@ -70,6 +68,10 @@ const Blogs = () => {
         return date.toLocaleDateString("en-GB", { day: "2-digit", month: "long", year: "numeric" });
     };
 
+
+
+
+
     return (
         <>
             
@@ -98,11 +100,13 @@ const Blogs = () => {
                                 <div className="p-4">
                                     <div className="flex items-center justify-between text-gray-600 text-sm mt-3">
                                         {/* Author Section */}
+                                        <button onClick={() => router.push(`/authorprofile?author=${fetchedBlogs.author}`)}>
                                         <div className="flex items-center space-x-2">
                                             <User size={18} className="text-gray-500" />
                                             <span className="font-medium"> {fetchedBlogs.author}</span><br />
                                             {/* <span className="font-medium"> {formatDate(fetchedBlogs.publishedAt)}</span> */}
                                         </div>
+                                        </button>
 
                                         {/* Category Section */}
                                         <div className="flex items-center space-x-2">

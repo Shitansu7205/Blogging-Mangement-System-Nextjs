@@ -59,6 +59,8 @@ export default function Dashboard() {
             })
             if(responce.ok){
                 toast.success('Logout Sucessfully...')
+                            // Refresh the page
+                            window.location.reload(); // This will reload the page
                 router.push('/login')
             }
         }

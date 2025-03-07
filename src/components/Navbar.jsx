@@ -84,11 +84,12 @@ export default function Navbar() {
         <>
         <nav className="flex items-center justify-between px-9 lg:px-32 py-4 bg-blue-700  shadow-lg w-full text-white  sticky top-0 z-20">
             {/* Left - Logo */}
+            <Link href='/'>
             <div className="text-2xl font-bold flex items-center gap-2">
                 <BookOpen className="w-8 h-8 text-white" />
                 <span className="hidden md:block">Blogify</span> {/* Visible on larger screens */}
             </div>
-
+            </Link>
             {/* Mobile Menu Button */}
             <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
                 {menuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
