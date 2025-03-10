@@ -35,6 +35,7 @@ export async function POST(req,res) {
                 name:data.name,
                 mail: data.mail,
                 password: hashPassword,
+                phone :data.phone,
                 tenantId: tenantId,
                 profileImage:data.profileImage // Save Cloudinary image URL
             });

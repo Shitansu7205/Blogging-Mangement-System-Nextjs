@@ -12,10 +12,16 @@ export async function GET(req, { params }) {
 
 
         const fetchingSingleBlogDetails = await Blog.findById(id)
-        // console.log(fetchingSingleBlogDetails.author)
+        const authoreName = await fetchingSingleBlogDetails.author
+        console.log(authoreName)
 
 
-        return NextResponse.json({ message: "Getting the blogs", status: 200 , sendingDeatilBlogs: fetchingSingleBlogDetails})
+        
+
+
+
+
+        return NextResponse.json({ message: "Getting the blogs", status: 200, sendingDeatilBlogs: fetchingSingleBlogDetails })
 
     } catch (error) {
         return NextResponse.json({ message: "Somethinsg went wrongs!", status: 500 })
