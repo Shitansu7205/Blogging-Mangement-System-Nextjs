@@ -52,6 +52,7 @@ const Signup = () => {
                     name: name,
                     mail: email,
                     password: password,
+                    phone :phone,
                     profileImage: imageUrl
                 })
             });
