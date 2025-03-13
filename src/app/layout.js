@@ -3,6 +3,8 @@ import "./globals.css";
 import { ToastContainer } from 'react-toastify';
 import Navbar from "@/components/Navbar";
 import Footer from '@/components/Footer'
+import Talkto from "@/components/Talkto";
+import Whatsapp from "@/components/Whatsapp";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +30,8 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <ToastContainer />
+        <Talkto />
+        <Whatsapp />
         <Footer/>
       </body>
     </html>
