@@ -35,7 +35,7 @@ const Footer = () => {
                 </div>
 
                 {/* Column 3: Services */}
-                <div>
+                <div className=' hidden md:block '>
                     <h3 className="text-lg font-semibold mb-4">Services</h3>
                     <ul className="text-sm">
                         <li>Blog Hosting</li>

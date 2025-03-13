@@ -48,27 +48,27 @@ export default function Navbar() {
             fetchCurrentUserForNavbar();
         }
     }, [name]);  // Dependency on name, so it fetches only if the name is not set
-    
+
 
 
     const logOut = async () => {
         const response = await fetch('/api/logout', {
             method: 'GET'
         });
-    
+
         if (response.ok) {
             toast.success('Logged Out Successfully');
-            
+
             // Refresh the page
             window.location.reload(); // This will reload the page
-            
+
             // Redirect to the login page after a small delay
             setTimeout(() => {
                 router.push('/login');
             }, 100); // Delay redirection to ensure reload happens first
         }
     };
-    
+
 
 
 
@@ -82,77 +82,87 @@ export default function Navbar() {
 
     return (
         <>
-        <nav className="flex items-center justify-between px-9 lg:px-32 py-4 bg-blue-700  shadow-lg w-full text-white  sticky top-0 z-20">
-            {/* Left - Logo */}
-            <Link href='/'>
-            <div className="text-2xl font-bold flex items-center gap-2">
-                <BookOpen className="w-8 h-8 text-white" />
-                <span className="hidden md:block">Blogify</span> {/* Visible on larger screens */}
-            </div>
-            </Link>
-            {/* Mobile Menu Button */}
-            <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
-                {menuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
-            </button>
+            <nav className="flex items-center justify-between px-9 lg:px-32 py-4 bg-blue-700  shadow-lg w-full text-white  sticky top-0 z-20">
+                {/* Left - Logo */}
+                <Link href='/'>
+                    <div className="text-2xl font-bold flex items-center gap-2">
+                        <BookOpen className="w-8 h-8 text-white" />
+                        <span className="hidden md:block">Blogify</span> {/* Visible on larger screens */}
+                    </div>
+                </Link>
+                {/* Mobile Menu Button */}
+                <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+                    {menuOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+                </button>
 
-            {/* Center - Nav Menu (Desktop) */}
-            <ul className="md:flex hidden gap-6 text-lg font-medium">
-                <li><Link href="/">Home</Link></li>
-                <li><Link href="/blogs">Blogs</Link></li>
-                {/* <li><Link href="/myblogs">My Blogs</Link></li> */}
-                <li><Link href="/blogpost">Add Blogs</Link></li>
-
- 
-                <li><Link href="/#contact">Contact</Link></li>
-
-            </ul>
+                {/* Center - Nav Menu (Desktop) */}
+                <ul className="md:flex hidden gap-6 text-lg font-medium">
+                    <li><Link href="/">Home</Link></li>
+                    <li><Link href="/blogs">Blogs</Link></li>
+                    {/* <li><Link href="/myblogs">My Blogs</Link></li> */}
+                    <li><Link href="/blogpost">Add Blogs</Link></li>
+                    <li><Link href="/#contact">Contact</Link></li>
+                </ul>
 
 
-            {/* Mobile Menu */}
-            {menuOpen && (
-                <div className="absolute top-16 left-0 w-full bg-white text-gray-800 shadow-md md:hidden flex flex-col items-center py-4 gap-2">
-                    <Link href="/" className="block px-4 py-2 hover:bg-gray-200 w-full text-center">Home</Link>
-                    <Link href="/services" className="block px-4 py-2 hover:bg-gray-200 w-full text-center">Services</Link>
-                    <Link href="/contact" className="block px-4 py-2 hover:bg-gray-200 w-full text-center">Contact</Link>
-
-                    {/* Blogs Dropdown for Mobile */}
-         
-                </div>
-            )}
-
-
-            {/* Right - Profile & Notifications */}
-            <div className="flex items-center gap-4 relative">
-                {/* Notification Icon */}
-                <Bell className="w-6 h-6 cursor-pointer hover:text-yellow-400 transition" />
-
-                {/* Profile Image */}
-                <div className="relative flex items-center gap-2 cursor-pointer" onClick={() => setDropdownOpen(!dropdownOpen)}>
-                    {/* <Image src={image} alt="Profile" width={40} height={40} className="rounded-full border-2 border-white hover:scale-105 transition" /> */}
-                    {image ? (
-                        <img
-                            src={image}
-                            alt="User Avatar"
-                            className="w-10 h-10 rounded-full"
-                        />
-                    ) : (
-                        <User className="w-7 h-7 text-white" />
-                    )}
-                    <span className="hidden md:block font-medium">{name}</span>
-                    <ChevronDown className="w-5 h-5" />
-                </div>
-
-                {/* Dropdown Menu */}
-                {dropdownOpen && (
-                    <div className="absolute right-0 mt-52 w-48 bg-white text-gray-800 shadow-lg rounded-lg py-2 z-10">
-                        <Link href="/profile" className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
-                        <Link href="/login" className="block px-4 py-2 hover:bg-gray-100">Sign In</Link>
-                        <button className="w-full text-left px-4 py-2 hover:bg-gray-100" onClick={logOut}>Logout</button>
+                {/* Mobile Menu */}
+                {menuOpen && (
+                    <div className="absolute top-16 left-0 w-full bg-white text-gray-800 shadow-md md:hidden flex flex-col items-center py-4 gap-2">
+                        <Link href="/" className="block px-4 py-2 hover:bg-gray-200 w-full text-center">Home</Link>
+                        <Link href="/blogs" className="block px-4 py-2 hover:bg-gray-200 w-full text-center">Blogs</Link>
+                        <Link href="/blogpost" className="block px-4 py-2 hover:bg-gray-200 w-full text-center">Add Blog Post</Link>
+                        <Link href="/#contact" className="block px-4 py-2 hover:bg-gray-200 w-full text-center">Contact</Link>
+                        {/* Blogs Dropdown for Mobile */}
                     </div>
                 )}
-            </div>
-        </nav>
-        
+
+
+                {/* Right - Profile & Notifications */}
+                <div className="flex items-center gap-4 relative">
+                    {/* Notification Icon */}
+                    <div className="relative group">
+                        {/* Filled Bell Effect */}
+                        <div className="relative cursor-pointer animate-pulse group-hover:animate-wiggle">
+                            <Bell className="w-6 h-6 text-yellow-500 drop-shadow-lg" style={{ fill: "currentColor" }} />
+                            {/* Small Red Dot for Notification */}
+                            <span className="absolute top-0 right-0 w-1.5 h-1.5 bg-green-600 rounded-full ring-2 ring-white"></span>
+                        </div>
+
+                        {/* Notification Popup (Shows on Hover) */}
+                        <Link href='/blogs' className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg p-3 border border-gray-200 opacity-0 group-hover:opacity-100 transition duration-300">
+                            <p className="text-sm text-gray-700">🔔 Wow! New Blog Posts.</p>
+                        </Link>
+                    </div>
+
+
+
+                    {/* Profile Image */}
+                    <div className="relative flex items-center gap-2 cursor-pointer" onClick={() => setDropdownOpen(!dropdownOpen)}>
+                        {/* <Image src={image} alt="Profile" width={40} height={40} className="rounded-full border-2 border-white hover:scale-105 transition" /> */}
+                        {image ? (
+                            <img
+                                src={image}
+                                alt="User Avatar"
+                                className="w-10 h-10 rounded-full"
+                            />
+                        ) : (
+                            <User className="w-7 h-7 text-white" />
+                        )}
+                        <span className="hidden md:block font-medium">{name}</span>
+                        {/* <ChevronDown className="w-5 h-5" /> */}
+                    </div>
+
+                    {/* Dropdown Menu */}
+                    {dropdownOpen && (
+                        <div className="absolute right-0 mt-52 w-48 bg-white text-gray-800 shadow-lg rounded-lg py-2 z-10">
+                            <Link href="/profile" className="block px-4 py-2 hover:bg-gray-100">Profile</Link>
+                            <Link href="/login" className="block px-4 py-2 hover:bg-gray-100">Sign In</Link>
+                            <button className="w-full text-left px-4 py-2 hover:bg-gray-100" onClick={logOut}>Logout</button>
+                        </div>
+                    )}
+                </div>
+            </nav>
+
         </>
     );
 }
