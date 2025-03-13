@@ -5,6 +5,9 @@ import { User, Calendar, MessageSquare } from "lucide-react";
 import { toast } from 'react-toastify';
 import Image from 'next/image';
 import {PropagateLoader} from "react-spinners";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+
 
 
 const BlogDetails = () => {
@@ -75,12 +78,34 @@ const BlogDetails = () => {
         fecthedBlogs()
     }, [id])
 
+
+
+
+    const ShareWhatsAppButton = ({ title, url }) => {
+        const shareOnWhatsApp = () => {
+            const message = `🌟 *${title}*\n\n🔗 Read more: \n${url}`;
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, "_blank");
+        };
+    
+        return (
+            <button onClick={shareOnWhatsApp} className="bg-green-500 text-white px-4 py-2 rounded flex items-center">
+                <FontAwesomeIcon icon={faWhatsapp} className="w-5 h-5 mr-2" />
+                Share on WhatsApp
+            </button>
+        );
+    };
+
+
+
+
+
+
+
+
     return (
         <>
-            {/* <h1>Hello {name}</h1>
-            <h1 >title : {title}</h1>
-            <p dangerouslySetInnerHTML={{ __html: description }}></p> */}
-            {/* <img src={image} alt='net' /> */}
+
 
 
                 {loading ? (
@@ -173,10 +198,8 @@ const BlogDetails = () => {
                                     <div className="bg-gray-100 p-6 rounded-2xl shadow-lg text-center">
                                         <h2 className="text-xl font-semibold text-gray-800 mb-4">Share This Post</h2>
                                         <div className="flex justify-center space-x-5">
-                                            <a href="#" className="text-blue-600 hover:text-blue-800 text-2xl transition"><i className="fab fa-facebook"></i></a>
-                                            <a href="#" className="text-blue-400 hover:text-blue-600 text-2xl transition"><i className="fab fa-twitter"></i></a>
-                                            <a href="#" className="text-red-600 hover:text-red-800 text-2xl transition"><i className="fab fa-youtube"></i></a>
-                                            <a href="#" className="text-pink-500 hover:text-pink-700 text-2xl transition"><i className="fab fa-instagram"></i></a>
+                                        
+                                           <ShareWhatsAppButton title={title}  url={`${window.location.origin}/blogdetails/${id}`}/>
                                         </div>
                                     </div>
                                 </aside>
