@@ -66,14 +66,14 @@ const GettingData = () => {
                 {/* User Info */}
                 <div className="text-center">
                     <h3 className="text-2xl font-semibold text-gray-900">{name}</h3>
-                    <p className="text-gray-500 text-sm">{mail}</p>
+                    {/* <p className="text-gray-500 text-sm">{mail}</p> */}
                 </div>
 
                 {/* Profile Details */}
                 <div className="w-full space-y-4 text-gray-700">
                     <div className="flex justify-between border-b pb-2">
                         <span className="text-gray-500 text-sm">Username</span>
-                        <p className="font-medium">johndoe_123</p>
+                        <p className="font-medium">{name}</p>
                     </div>
 
                     <div className="flex justify-between border-b pb-2">
@@ -83,7 +83,7 @@ const GettingData = () => {
 
                     <div className="flex justify-between border-b pb-2">
                         <span className="text-gray-500 text-sm">Location</span>
-                        <p className="font-medium">New York, USA</p>
+                        <p className="font-medium">Bhubaneswar ,Odisha</p>
                     </div>
 
                     <div className="flex justify-between border-b pb-2">

@@ -9,9 +9,11 @@ const ModifyComponent = () => {
 
     const getId = searchParams.get('id');
     const getTitle = searchParams.get('title');
+    const getContents = searchParams.get('contents')
 
     const [modifiedTitle, setModifiedTitle] = useState(getTitle || ""); // Handle null title
-  
+    const [modifiedContents, setModifiedContents] = useState(getContents || ""); // Handle null Description
+
 
     const sendData = async (e) => {
         e.preventDefault();
@@ -29,7 +31,13 @@ const ModifyComponent = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ title: modifiedTitle })
+                body: JSON.stringify(
+                    {
+                        title: modifiedTitle,
+                        contents: modifiedContents
+
+                    }
+                )
             });
 
             const data = await response.json();
@@ -56,6 +64,20 @@ const ModifyComponent = () => {
                     type="text"
                     value={modifiedTitle}
                     onChange={(e) => setModifiedTitle(e.target.value)}
+                    id="title"
+                    className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Enter blog title"
+                    required
+                />
+            </div>
+            <div className="mb-5">
+                <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                  Description
+                </label>
+                <input
+                    type="text"
+                    value={modifiedContents}
+                    onChange={(e) => setModifiedContents(e.target.value)}
                     id="title"
                     className="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500"
                     placeholder="Enter blog title"

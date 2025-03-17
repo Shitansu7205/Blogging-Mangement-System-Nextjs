@@ -140,10 +140,12 @@ export default function Navbar() {
                     <div className="relative flex items-center gap-2 cursor-pointer" onClick={() => setDropdownOpen(!dropdownOpen)}>
                         {/* <Image src={image} alt="Profile" width={40} height={40} className="rounded-full border-2 border-white hover:scale-105 transition" /> */}
                         {image ? (
-                            <img
+                            <Image
+                            width={10}
+                            height={10}
                                 src={image}
                                 alt="User Avatar"
-                                className="w-10 h-10 rounded-full"
+                                className="w-10 h-10 rounded-full object-cover"
                             />
                         ) : (
                             <User className="w-7 h-7 text-white" />

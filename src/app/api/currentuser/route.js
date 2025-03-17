@@ -30,13 +30,14 @@ export async function GET(request) {
         } 
         const extractImageUrl  = user.profileImage
         const extractedUsername = user.name
+        const extractedPhone = user.phone
         // console.log(extractImageUrl)
         // console.log(extractedUsername)
 
 
 
 
-        return NextResponse.json({ extractedEmailFromToken: decoded.mail , sendimageurl: extractImageUrl , sendingUsername: extractedUsername},{ status: 200 });
+        return NextResponse.json({ extractedEmailFromToken: decoded.mail , sendimageurl: extractImageUrl , sendingUsername: extractedUsername,sendingPhone :extractedPhone},{ status: 200 });
 
     } catch (error) {
         return NextResponse.json({ message: "Invalid or expired token" }, { status: 401 });

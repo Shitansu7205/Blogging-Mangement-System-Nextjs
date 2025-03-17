@@ -137,7 +137,7 @@ const Blogs = () => {
                                         <div className="flex space-x-2">
                                             {/* Edit Button */}
                                             <button
-                                                onClick={() => router.push(`/modify?id=${fetchedBlogs._id}&title=${fetchedBlogs.title}`)}
+                                                onClick={() => router.push(`/modify?id=${fetchedBlogs._id}&title=${fetchedBlogs.title}&contents=${fetchedBlogs.contents}`)}
                                                 className="p-2 text-gray-700 bg-gray-200 rounded-md shadow-md hover:bg-gray-300 hover:scale-105 transition-all"
                                             >
                                                 <Pencil size={18} />

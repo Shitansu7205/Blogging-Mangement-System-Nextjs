@@ -9,6 +9,7 @@ export async function PUT(req, { params }) {
         await connect(); // ✅ Ensure DB connection
 
         const { id } = params; // ✅ Get blog ID from dynamic route
+        
         if (!id) {
             return NextResponse.json({ message: "Blog ID is required" }, { status: 400 });
         }

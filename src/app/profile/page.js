@@ -37,7 +37,7 @@ export default function Dashboard() {
             setName(data.sendingUsername); // Set user email in state
             setImage(data.sendimageurl)
             setEmail(data.extractedEmailFromToken)
-            setNumber(data.sendinPhone)
+            setNumber(data.sendingPhone)
 
 
             fetchedBlogsLenght()
@@ -342,14 +342,14 @@ export default function Dashboard() {
                                     {/* User Info */}
                                     <div className="text-center">
                                         <h3 className="text-2xl font-semibold text-gray-900">{name}</h3>
-                                        <p className="text-gray-500 text-sm">{email}</p>
+                                        {/* <p className="text-gray-500 text-sm">{email}</p> */}
                                     </div>
 
                                     {/* Profile Details */}
                                     <div className="w-full space-y-4 text-gray-700">
                                         <div className="flex justify-between border-b pb-2">
                                             <span className="text-gray-500 text-sm">Username</span>
-                                            <p className="font-medium">johndoe_123</p>
+                                            <p className="font-medium">{name}</p>
                                         </div>
 
                                         <div className="flex justify-between border-b pb-2">
@@ -631,7 +631,7 @@ export default function Dashboard() {
                                 <div className="flex flex-col items-center space-y-4">
                                     <img src={image} alt="User Profile" className="w-24 h-24 rounded-full border-4 border-gray-200 shadow-md" />
                                     <h3 className="text-sm font-semibold text-gray-900">{name}</h3>
-                                    <p className="text-gray-500">{email}</p>
+                                    {/* <p className="text-gray-500">{email}</p> */}
                                     <p className="text-gray-500">{number}</p>
                                     <p className="text-gray-500">Bhubaneswar, India</p>
                                 </div>
